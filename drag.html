@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+			::-webkit-scrollbar
+			{
+					width: 16px;
+					height: 16px;
+					background-color: #F5F5F5;
+			}
+			 
+			/*定义滚动条轨道 内阴影+圆角*/
+			::-webkit-scrollbar-track
+			{
+					-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+					border-radius: 10px;
+					background-color: #F5F5F5;
+			}
+			 
+			/*定义滑块 内阴影+圆角*/
+			::-webkit-scrollbar-thumb
+			{
+					border-radius: 10px;
+					-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+					background-color: #555;
+			}
+				.pa{
+					width: 500px;
+					height: 500px;
+					position: relative;
+					border: 1px solid #C7C7C7;
+					overflow: auto;
+				}
+				.ch{
+					width: 200px;
+					height: 200px;
+					position: absolute;
+					background: #F3D5D5;
+					left: 400px;
+					top: 400px;
+				}
+				body,html{
+					width: 100%;
+					height: 100%;
+				}
+				body{
+					padding-top: 200px;
+					padding-left: 200px;
+				}
+			</style>
+		
+	</head>
+	<body onmouseup="mouseUp(event)">
+		<div id="pa"  class="pa">
+			<div id="ch" class="ch" ></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		let Array = []
+		let x,y;
+		function mouseDown(e){
+			x=ev.offsetX
+			y=ev.offsetY
+		}
+		function allowDrop(ev)
+		{
+		ev.preventDefault();
+		}
+
+		function drag(ev)
+		{
+		ev.dataTransfer.setData("Text",ev.target.id);
+		}
+
+		function drop(ev)
+		{
+		ev.preventDefault();
+		var data=ev.dataTransfer.getData("Text");
+		ev.target.appendChild(document.getElementById(data));
+		}
+			function mouseUp(ev)
+				{
+				document.getElementById("ch").style.top= ev.offsetY + 'px'
+				document.getElementById("ch").style.left= ev.offsetX + 'px'
+				console.log(ev.offsetY+":"+ev.offsetX)
+				//ev.target.appendChild(document.getElementById(data));
+				}
+			</script>
+</html>

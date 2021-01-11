@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+
+
+.hiddenDiv
+{
+	/* animation: leave 1s ease-out 1; */
+	/* animation-fill-mode: forwards; */
+	/* display: none; */
+	height: 0;
+	overflow: hidden;
+	
+}
+.showDiv
+{
+	/* display: block;
+	animation: showA 1s ease-in 1; */
+	/* animation-fill-mode: forwards; */   
+	transition: 0.3s height ease-in-out;
+	height: 100px;
+}
+.baseDiv {
+	position: relative;
+	background: #c7c7c7;
+	z-index: -1;
+}
+.title {
+	background: #fff;
+}
+@keyframes showA {
+  0% { 
+	  top: -100px;
+	  opacity: 0;
+	   }
+  100% { 
+	top: 0px;
+	opacity: 0.5;
+   }
+}
+@keyframes leave {
+  0% { top: 0; }
+  100% { 
+	top: -100px;
+	opacity: 0.2;
+   }
+}
+#triangle-topleft {
+    width: 0;
+    height: 0;
+    border-top: 100px solid red;
+    border-right: 100px solid transparent;
+}
+		</style>
+	</head>
+	<body>
+		<div class="parent">
+			<div class="title" onclick="testShow(this)">一级</div>
+			<div id="ani" class="hiddenDiv baseDiv">
+				<div>123232</div>
+				<div>123232</div>
+				<div>123232</div>
+				<div>123232</div>
+				<div>123232</div>
+			</div>
+		</div>
+		<div class="hiddenDiv"></div>
+		<button onclick="testShow()">折叠</button>
+		<div id='triangle-topleft'></div>
+		<!-- <div class="test"> -->
+	</body>
+	<script>
+		function testShow(ele) {
+			let e = ele.nextElementSibling
+			//let e = document.getElementById("ani")
+			if(hasClass(e, "showDiv")){
+				removeClass(e, "showDiv")
+				addClass(e, "hiddenDiv")
+			} else {
+				removeClass(e, "hiddenDiv")
+				addClass(e, "showDiv")
+			}
+		}
+		function hasClass(e,cla){
+			classStr =e.getAttribute("class")
+			let hasCla = false
+			if(classStr) {
+				let arr = classStr.split(" ")
+				hasCla = arr.indexOf(cla)>-1? true:false
+			}
+			return hasCla
+		}
+		function removeClass(e,cla){
+			classStr =e.getAttribute("class")
+			if(classStr) {
+				let arr = classStr.split(" ")	
+				while( arr.indexOf(cla)> -1) {
+					arr.splice(arr.indexOf(cla), 1)
+				}
+				e.setAttribute("class", arr.join(' '))
+			}
+			return e
+		}
+		function addClass(e,cla) {
+			if(hasClass(e, cla)) return
+			let newCla = e.getAttribute("class") + ' ' + cla
+			e.setAttribute("class", newCla)
+			return e
+		}
+	</script>
+</html>
