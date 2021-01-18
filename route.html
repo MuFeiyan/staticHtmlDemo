@@ -63,8 +63,7 @@
 							method.apply(history, arguments);
 							historyDep.notify();
 						}
-					}
-					
+					}		
 				}
 		}())
 		 
@@ -75,11 +74,12 @@
 // 			console.log('窗口的history改变了');
 // 		})
 		function test() {
-			history.pushState({page: 1}, null,'#A')
+			history.pushState({page: 1}, null,'/test/23')
 		}
 // 		window.addEventListener('popstate', event => {
 // 			console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
 // 		});
+		// 浏览器前进后退会改变
 		window.onpopstate = function(event) {
 			console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
 		};
