@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			html {
+				font-size: 32px;
+			}
+			body {
+				margin: 1rem;
+			}
+			.rect {
+				font-size: 32px;
+				width: .74rem;
+        height: .74rem;
+				display: inline-block;
+        background: #009688;
+				transform-origin: right bottom;
+				animation: roll 1.5s 1s 3 linear forwards;
+			}
+			.demo {
+				display: inline-block;
+				animation: shift 4.5s 1s steps(3, start)  backwards;
+			}
+			@keyframes roll{
+				0% {
+					transform: translateX(0%) ;
+				}
+				20% {
+					transform: translateX(0%) skewX(15deg);
+				}
+				40% {
+					transform: translateX(0%) skewX(0deg) scaleY(1.1);
+				}
+				60% {
+					transform: translateX(0%) skewX(15deg) scaleY(1.1) rotate(45deg);
+				}
+				80% {
+					transform: translateX(0%) skew(25deg) scale(1) rotate(45deg)
+				}
+				100% {
+					transform: translateX(0%) skewX(0deg)  rotate(90deg)
+				}
+			}
+			@keyframes shift{
+				0% {
+					transform: translateX(-300%)
+				}
+				100% {
+					transform: translateX(0%)
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<div class="demo">
+				<div class="rect"></div>
+			</div>
+		</div>
+	</body>
+</html>

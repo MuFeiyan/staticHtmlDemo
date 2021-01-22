@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			body {
+				margin: 20px;
+				perspective: 100px;
+			}
+			.rect {
+				width: 180px;
+				height: 60px;
+				margin: auto;
+				background-color: #BECEEB;
+				animation: jump 1s infinite alternate ;
+				/* transform: translateY(200px) rotate(-45deg)  ; */
+			}
+			@keyframes jump{
+				0%{
+					transform: rotate(-45deg)  translateY(200px)   ;
+				}
+				100%{
+					transform:  rotate(45deg)  translateY(200px);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="rect"></div>
+	</body>
+</html>
