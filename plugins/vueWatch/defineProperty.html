@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div>
+		</div>
+		<script>
+			let option = {
+				data: {
+					a: '',
+					b: ''
+				},
+				watch: {
+					a: function(newVal, oldVal) {
+						console.log('watch:  a from ' + oldVal + ' to ' + newVal, this.b);
+					}
+				},
+				computed: {
+					c: function() {
+						console.log('c = ' + this.b + '1');
+						return this.b + '1'
+					},
+					d: function() {
+						console.log('d = ' + this.b + '2');
+						return b + '2'
+					}
+				}
+			}
+			function proxy(obj, key, storeProperty, watch) {
+				let computedArr = []
+				watch && relatedFun.push(watch)
+				Object.defineProperty(obj, key, {
+				  enumerable: true,
+				  configurable: true,
+				  set: function(val){
+					  let oldVal = obj[storeProperty][key]
+					  obj[storeProperty][key] = val
+					  watch && watch.call(obj, val, oldVal)
+					  computedArr.forEach(fun => {
+						  fun.call(obj, val, oldVal)
+					  })
+					  console.log(key + ' set :' + val);
+				  },
+				  get: function(){
+					  	console.log(key + ' get ');
+						return obj[storeProperty][key]
+				  }
+				});
+			}
+			function initData(vm, option) {
+				vm._data = option.data
+				let keys =  Object.keys(option.data)
+				keys.forEach(item => {
+					let fun =option.watch[item] ? option.watch[item] : undefined
+					proxy(vm, item, '_data', fun)
+				})	
+			}
+			function Vue(option) {
+				initData(this, option)
+			}
+			let vue = new Vue(option)	
+			console.log(vue);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,181 @@
+
+.clear {
+    display: block;
+    overflow: hidden;
+}
+.topHeight{
+height:50%;padding:15px;
+}
+
+.bottomHeight{
+height:50%;padding:15px;
+}
+
+.shadowBox{
+	-webkit-box-shadow:0 0 16px #ddd;  
+  	-moz-box-shadow:0 0 16px #ddd;  
+  	box-shadow:0 0 16px #ddd;
+  	height:100%;
+	background-color: #fff;
+	border-radius: 4px;
+}
+
+.leftContent{
+
+}
+
+ .rightContent{
+
+}
+
+.bottomContent{
+   
+}
+
+.title{
+   height: 60px;
+    line-height: 60px;
+    background-color: #fff;
+    box-shadow: 0 0 10px #ddd;
+    padding: 0 30px;
+    margin-bottom: 20px;
+}
+
+.lTitle , .rTitle {
+	height: 60px;
+    line-height: 60px;
+}
+
+.disable{
+pointer-events:none;
+color:#afafaf!important;
+cursor:not-allowed!important;
+}
+
+.lTitle span{
+	margin-left:20px;
+	color: #333;
+	font-size: 1.45rem;
+}
+
+.clear {
+    display: block;
+    overflow: hidden;
+}
+
+.content-title{
+	height: 50px;
+	line-height: 50px;
+	padding-left: 20px;
+	border-bottom: 1px solid #eee;
+	font-size: 1.3rem;
+}
+.leftContent .content-title{
+	color: #6e5cde;
+}
+.leftContent p {
+	padding: 20px;
+    font-size: 1.2rem;
+    line-height: 160%;
+}
+.bg-botoom{
+	padding: 0 20px;
+    text-align: center;
+	height: 70px;
+}
+.leftContent img{
+    max-width: 100%;
+    max-height: 50%;
+}
+
+
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
+.list-unstyled li {
+	height: 50px;
+	float: left;
+	text-align: center;
+	margin-left: 30px;
+}
+
+.list-unstyled li:first-child {
+	margin-left: 0;
+}
+
+.list-unstyled li a {
+	color: #999;
+	opacity: 0.8;
+	font-size: 1.2rem;
+	transition: .3s linear;
+	text-decoration: none!important;
+	font-weight:900;
+}
+
+.list-unstyled li.active {
+	border-bottom: 2px solid #427abf;
+}
+
+.list-unstyled li.active a {
+	color: #333;
+	opacity: 1;
+	font-weight:900;
+}
+
+.list-unstyled li:hover a {
+	color: #333;
+	opacity: 1;
+}
+
+#line{
+	width: 100%;
+	margin: 20px;
+	background-color: #ccc; 
+}
+
+.tab-content{
+/*     overflow-y:auto;
+ */
+ }
+.tab-content .tab-pane{
+padding:15px 5px;
+}
+
+.sysBox{
+    width:100%;
+	float: left;
+	padding: 5px 0;
+	display: block;
+	border: 1px solid #427abf;
+	-webkit-box-shadow:0 0 16px #ddd;  
+  	-moz-box-shadow:0 0 16px #ddd;  
+  	box-shadow:0 0 16px #ddd;
+    cursor: pointer;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    color: #676a6c;
+}
+
+.sysBox.active {
+	background: #edecfa;
+}
+
+.sysBox:hover {
+	background: #edecfa;
+}
+
+.sysBox h4{
+    text-align:center;
+	font-size:14px !important;
+}
+
+.sysBox h5 {
+    text-align:center;
+    margin-top: 5px;
+    font-weight: 400;
+    margin-bottom: 5px;
+    font-size:12px !important;
+}
+

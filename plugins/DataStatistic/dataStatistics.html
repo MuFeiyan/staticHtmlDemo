@@ -1,0 +1,208 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" href="css/bootstrap.css" />
+<link rel="stylesheet" href="css/dataStatistics.css" />
+
+<style>
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div,dl,dt
+,dd,input,label{font-family: "Microsoft Yahei" !important;}
+html{
+	font-family: "Microsoft Yahei" !important;
+}
+body{
+font-size:13px;
+}
+
+</style>
+   
+
+
+</head>
+<body class="bg-1" id="body-content">
+   <div id="content">
+        <!-- <div class="col-md-12 " style="padding-top:10px;color:#787575">
+        	HDFS空间使用情况：总空间 120000M，使用了 78800M，使用率  66%
+        </div> -->
+   		<div class="col-md-4" style=" margin: 1% 0%;height:90%">
+   		    <div class="shadowBox" style="height:15%">
+   		    	<div class="col-md-4" style="height:100%" id="pieBox">
+   		    	</div>
+   		    	<div class="col-md-8" style="text-align: center;font-size: 1.4rem;">
+   		    		<div style="font-weight: 900;">HDFS空间使用情况</div>
+   		    		<div style="color:#746e6e;">总空间 120000M，<font style="color:#fe7235 ;">使用了 78800M</font></div>
+   		    	</div>
+   		    </div>
+			<div class="rightContent shadowBox" style="height:85%;margin-top:2%">
+				<div class="content-title" style="font-weight: bold;">
+					<ul class="list-unstyled clear" id="Section">
+			              <li class="active"><a onclick="changeSection(this,1);">表记录数</a></li>
+			               <li><a onclick="changeSection(this,2);">表空间</a></li> 
+		           </ul>
+				</div>
+				<div class="content" style="width:100%;height:100%;">
+			           <div id="barBox" style="width:100%;height:90%;">
+			           </div>
+			    </div>
+			</div>
+		 </div>
+		 <div class="col-md-8" style=" margin: 1% 0%; height:90%">
+		 
+		 	<div class="bottomContent shadowBox" style="height:40%;">
+			    <div class="content" style="width:100%;height:100%;">
+			    		<div style="width:100%;height:20%;font-size: 1.2rem;font-weight: 900;padding-left: 3%;padding-top: 5px;">日趋势</div>
+			           <div id="lineBox" style="width:100%;height:80%;">
+			           </div>
+			    </div>
+
+		 	</div>
+		 	<div class="bottomContent shadowBox" style="height:58.5%;margin-top:1.5%">
+			    <div class="content-title">
+				    <ul class="list-unstyled clear" id="sysClassify">
+			            <li class="active"><a href="#category1" data-toggle="tab">数据层</a></li>
+			            <li><a href="#category2" data-toggle="tab">源系统</a></li>
+		            </ul>
+			    </div>
+			    		 		<div style="padding-top:10px;color:#787575;padding-left:40%;font-size:1.2rem">表数量（个）/占用空间（M）</div>
+			    
+			    <div id="sysData" class="tab-content" >
+				    <div class="clear tab-pane fade in active" id="category1">
+				        <div class="col-sm-12 col-md-12" style="padding:0;">
+				            <div class="col-sm-2 col-md-2">                         
+                               <div class="sysBox" >
+                                   <h4>tbdata</h4>
+						            <h5>47 / 400</h5>
+                               </div>                            
+                            </div>	
+                            <div class="col-sm-2 col-md-2">                         
+                               <div class="sysBox" >
+                                    <h4>omdata</h4>
+						            <h5>78 / 550</h5>
+                               </div>                            
+                            </div>			         
+				        </div>
+				    </div>
+				    <div class="clear tab-pane fade" id="category2">
+				        <div class="col-sm-12 col-md-12" style="padding:0;">
+				            <div class="col-sm-2 col-md-2">
+						         <div class="sysBox" >
+                                   <h4>S01</h4>
+						            <h5>表数量：69张</h5>
+						            <h5>数据量：0.45GB</h5>
+						            <h5>字段数：989个</h5>
+                               </div>   
+				            </div>				           
+				        </div>
+				    </div>
+				
+			     </div>
+
+		 	</div>
+		 </div>
+	</div>
+	<!-- loading -->
+<div class="modal fade" id="loading" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop='static'>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" >提示</h4>
+      </div>
+      <div class="modal-body">
+       正在加载......
+      </div>
+    </div>
+  </div>
+</div>
+	<script src="js/jquery-2.1.1.min.js"></script>
+   <script type="text/javascript" src="js/echarts.js"></script>
+   <script type="text/javascript" src="js/bootstrap.min.js" ></script>
+   <script src="js/template.js"></script>
+   <!--Beyond Scripts-->
+<script src="js/beyond.js"></script>
+<script src="js/toastr.js"></script>
+<!-- autosize -->
+<script src="js/jquery.autosize.js"></script>
+<!-- 第三方插件 -->
+<script src="js/message.js"></script>
+<!-- 模板引擎 -->
+<script id="scheList" type="text/html">
+{{if scheList !=0}}
+	{{each scheList as temp i}}
+        {{if i==0}}
+	    <tr><td rowspan="{{oneLength}}">表类别</td>
+        {{else}}
+        <tr>
+        {{/if}} 
+    	{{if temp.name=="frdata"}}
+				<td href="#" class="tooltip-test" data-toggle="tooltip" data-placement="left" title="数据接入层：通过外部表映射本地数据文件。">{{temp.name}}</td>
+        {{else}}
+			{{if temp.name=="tbdata"}}
+				<td href="#" class="tooltip-test" data-toggle="tooltip" data-placement="left" title="切片历史层：外部表数据以日期分区形式加载到该层，以日期切片形式保留历史。">{{temp.name}}</td>
+           {{else}}		
+               {{if temp.name=="omdata"}}
+				<td href="#" class="tooltip-test" data-toggle="tooltip" data-placement="left" title="拉链历史层：对于数据量较大且内容变化不频繁的表(如客户信息表)以拉链形式保留历史，并清理对应切片历史层数据。">{{temp.name}}</td>
+               {{else}}	
+              {{if temp.name=="cmdata"}}
+				<td href="#" class="tooltip-test" data-toggle="tooltip" data-placement="left" title="数据加工层：可以将复杂逻辑需求的结果数据提前存储到数据加工层的物理表中, 提高查询效率。">{{temp.name}}</td>
+              {{else}}
+                <td >{{temp.name}}</td>
+            {{/if}}
+        {{/if}}
+   	  {{/if}}	
+	{{/if}}
+        
+        
+       
+         
+        <td align='right'>{{temp.tab_count}}</td><td align='right'>{{temp.file_size}}</td></tr>
+    {{/each}}
+{{/if}}
+</script>
+<script id="sysList" type="text/html">
+{{if sysList !=0}}
+	{{each sysList as temp i}}
+    	{{if i==0}}
+			<tr><td rowspan="{{twoLength}}">源系统</td><td>{{temp.name}}</td><td align='right'>{{temp.tab_count}}</td><td align='right'>{{temp.file_size}}</td></tr>
+        {{else}}
+            <tr><td>{{temp.name}}</td><td align='right'>{{temp.tab_count}}</td><td align='right'>{{temp.file_size}}</td></tr> 
+		{{/if}}
+    {{/each}}
+{{/if}}
+</script>
+<script id="sysClass" type="text/html">
+{{if tabSchemaList.length !=0}}
+    {{each tabSchemaList as temp i}}
+        {{if i==0}}
+             <li class="active">
+        {{else}}
+             <li>
+        {{/if}}
+                 <a href="#sysClassify{{i}}" data-toggle="tab">{{temp.tab_schema}}</a>
+             </li>
+    {{/each}}
+{{/if}}
+</script>
+
+<script>
+//加入ajax全局变量
+//如果发送的session请求失效，弹框提示，并跳转到登陆页面
+$.ajaxSetup({
+    complete:function(XMLHttpRequest,textStatus){
+    	var sessionstatus = XMLHttpRequest.getResponseHeader("sessionstatus"); 
+        if(sessionstatus=="timeout"){
+            //session失效提示
+          window.location.href =  base.basePath + '/error/noSession.jsp';
+      	}
+    }
+});
+
+</script>
+<script type="text/javascript" src="js/dataStatistics.js"></script>
+
+
+</body>
+</html>
+

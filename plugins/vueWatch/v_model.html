@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div>
+			<input :value="data.val" id="inputId" oninput="handleOnInput(event)"/>
+			<button onclick="add()">add</button>
+		</div>
+	</body>
+	<script type="text/javascript">
+		let data = {val:''}
+		let handleOnInput = (e) => {
+			console.log(e)
+			data.val = e.target.value
+		}
+		Object.defineProperty(data, 'val',{
+			get: () => { return this.val ? this.val : '' },
+			set: val => { 
+				console.log('set')
+				this.val = val 
+				// document.getElementById('inputId').value = val
+			},
+			enumerable: true,
+			configurable: true
+			}
+		)
+		function add() {
+			data.val += '1'
+		}
+	</script>
+</html>

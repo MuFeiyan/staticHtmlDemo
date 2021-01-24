@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="module">
+			import Vue from './module/Vue.js'
+			let options = {
+				data: {
+					a: '',
+					b: ''
+				},
+				computed: {
+					c: function() {
+						return this.a + this.b
+					}
+				},
+				watcher: {
+					a: function(newVal, oldVal) {
+						console.log('a change:' + oldVal + ' -> ' + newVal)
+					}
+				}
+			}
+			const vue = new Vue(options)
+			vue.a = '1'
+			vue.b = 'b'
+			console.log(vue.c)
+		</script>
+		<script>
+			let obj = {}
+		</script>
+	</body>
+</html>

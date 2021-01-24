@@ -1,92 +1,77 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
+		<meta charset="UTF-8">
 		<title></title>
 		<style>
-			/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
-			::-webkit-scrollbar
-			{
-					width: 16px;
-					height: 16px;
-					background-color: #F5F5F5;
+			.flex {
+				display: flex;
 			}
-			 
-			/*定义滚动条轨道 内阴影+圆角*/
-			::-webkit-scrollbar-track
-			{
-					-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-					border-radius: 10px;
-					background-color: #F5F5F5;
+			.left, .right {
+				flex-grow: 1;
+				border: 1px solid #808080;
 			}
-			 
-			/*定义滑块 内阴影+圆角*/
-			::-webkit-scrollbar-thumb
-			{
-					border-radius: 10px;
-					-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-					background-color: #555;
-			}
-				.pa{
-					width: 500px;
-					height: 500px;
-					position: relative;
-					border: 1px solid #C7C7C7;
-					overflow: auto;
-				}
-				.ch{
-					width: 200px;
-					height: 200px;
-					position: absolute;
-					background: #F3D5D5;
-					left: 400px;
-					top: 400px;
-				}
-				body,html{
-					width: 100%;
-					height: 100%;
-				}
-				body{
-					padding-top: 200px;
-					padding-left: 200px;
-				}
-			</style>
-		
+		</style>
 	</head>
-	<body onmouseup="mouseUp(event)">
-		<div id="pa"  class="pa">
-			<div id="ch" class="ch" ></div>
+	<body>
+		<div class="flex">
+			<div class="left">
+				<ul id="leftDrag">
+					<li id=1  draggable="true">1</li>
+					<li id=2 draggable="true">2</li>
+				</ul>
+			</div>
+			<div class="right">
+				<ul id="righttDrag">
+					<li id=3 draggable="true">3</li>
+					<li id=4 draggable="true">4</li>
+				</ul>
+			</div>
 		</div>
 	</body>
-	<script type="text/javascript">
-		let Array = []
-		let x,y;
-		function mouseDown(e){
-			x=ev.offsetX
-			y=ev.offsetY
+	<script>
+		let left = document.getElementById('leftDrag')
+		let right = document.getElementById('righttDrag')
+		function perventDefault(e){
+			e.preventDefault();
 		}
-		function allowDrop(ev)
-		{
-		ev.preventDefault();
+		function dragstart(e){
+			e.dataTransfer.setData('ele', e.target.id)
+			//e.dataTransfer.effectAllowed = 'move' //可设置多种值
+			//e.dataTransfer.setDragImage(document.getElementById('1'), 20, 20)
 		}
-
-		function drag(ev)
-		{
-		ev.dataTransfer.setData("Text",ev.target.id);
+		function dragenter(e){
+			e.preventDefault();
+			//e.dataTransfer.dropEffect = 'move' //可设置多种值
 		}
-
-		function drop(ev)
-		{
-		ev.preventDefault();
-		var data=ev.dataTransfer.getData("Text");
-		ev.target.appendChild(document.getElementById(data));
+		function drop(e){
+			let ele = e.dataTransfer.getData('ele')
+			e.target.parentElement.appendChild(document.getElementById(ele))
 		}
-			function mouseUp(ev)
-				{
-				document.getElementById("ch").style.top= ev.offsetY + 'px'
-				document.getElementById("ch").style.left= ev.offsetX + 'px'
-				console.log(ev.offsetY+":"+ev.offsetX)
-				//ev.target.appendChild(document.getElementById(data));
-				}
-			</script>
+		//从右项左移
+		right.addEventListener('dragstart', dragstart)
+		left.addEventListener( "dragenter", dragenter)
+		left.addEventListener( "dragover", perventDefault)
+		left.addEventListener('drop', drop)
+		//从左向右移
+		left.addEventListener('dragstart', dragstart)
+		right.addEventListener( "dragenter", dragenter)
+		right.addEventListener( "dragover", perventDefault)
+		right.addEventListener('drop', drop)
+		/*
+		 *说明：
+		 * 拖动元素依次触发事件：dragstart,drag,dragend
+		 * 放置元素依次触发事件：dragenter,dragover,dragleave或者drop
+		 * a、默认图像文本和链接是可拖动的,其他元素若想可拖动需设置draggable="true"；
+		 * b、因为大部分元素默认是不可放置的，若想放置需要重写dragenter,dragover阻止默认事件；
+		 * c、dataTransfer:在拖动过程存储数据；在dragstart中调用setData(key,value)，在drop中getData（key）；
+		 * 	  setDragImage可设置显示在光标下方的元素,默认是拖动的元素；
+		 * d、dropEffect和effectAllowed可以设置拖动的元素和做作为目标的元素做怎样的接收操作；
+		 * 
+		 * 
+		 * 兼容性
+		 * ie中dataTransfer设置数据的key必须为'text',其他会报错
+		 * firefox中dataTransfer必须调用setData(key,value），不然拖动无法生效
+		 */
+	</script>
 </html>
