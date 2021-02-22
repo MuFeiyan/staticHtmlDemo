@@ -1,5 +1,5 @@
 @font-face {
  font-family: 'fontnameRegular';
- src: url('../font/fontname.ttf') format('truetype');
+ src: url('./font/fontname.ttf') format('truetype');
 }  
 /*其中fontName替换为你的字体名称*/
