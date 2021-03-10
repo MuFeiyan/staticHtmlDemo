@@ -16,12 +16,13 @@
 				animation: jump 1s infinite alternate ;
 				/* transform: translateY(200px) rotate(-45deg)  ; */
 			}
+			/* 角度变化 x/y轴也会跟着变化放心， 变换的顺序会影响变换的动画效果 */
 			@keyframes jump{
 				0%{
-					transform: rotate(-45deg)  translateY(200px)   ;
+					transform: rotate(-45deg) translateY(200px);
 				}
 				100%{
-					transform:  rotate(45deg)  translateY(200px);
+					transform: rotate(45deg) translateY(200px);
 				}
 			}
 		</style>

@@ -13,26 +13,37 @@
   <body>
     <h1>Channel messaging demo</h1>
     <p class="output">My body</p>
+		<button onclick="sendMessage()">send</button>
     <iframe src="page2.html" width='480' height='320'></iframe>
   </body>
   <script>
-    var channel = new MessageChannel();
-    var output = document.querySelector('.output');
-    var iframe = document.querySelector('iframe');
-
-    // Wait for the iframe to load
-    iframe.addEventListener("load", onLoad);
-    
-    function onLoad() {
-      // Listen for messages on port1
-      channel.port1.onmessage = onMessage;
-      // Transfer port2 to the iframe
-      iframe.contentWindow.postMessage('Hello from the main page!', '*', [channel.port2]);
-    }
-
-    // Handle messages received on port1
-    function onMessage(e) {
-      output.innerHTML = e.data;
-    }
+		// Handle messages received on port1
+		function onMessage(e) {
+			var output = document.querySelector('.output');
+		  output.innerHTML = e.data;
+		}
+		// iframe
+		testIframe()
+   function testIframe() {
+			var channel = new MessageChannel();
+			var output = document.querySelector('.output');
+			var iframe = document.querySelector('iframe');
+			// Wait for the iframe to load
+			iframe.addEventListener("load", onLoad);
+			function onLoad() {
+			  // Listen for messages on port1
+			  channel.port1.onmessage = onMessage;
+			  // Transfer port2 to the iframe
+			  iframe.contentWindow.postMessage('Hello from the main page!', '*', [channel.port2]);
+			}	
+		};
+		// otherWindow
+		let otherWindow = window.open('./page2.html', '_blank');
+		function sendMessage() {
+			var channel = new MessageChannel();
+			channel.port1.onmessage = onMessage;
+			// Transfer port2 to the iframe
+			otherWindow.postMessage('Hello from the main page!', '*', [channel.port2]);
+		}
   </script>
 </html>
