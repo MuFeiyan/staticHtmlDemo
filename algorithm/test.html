@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="module">
+			import { generateData, bubbleSort, selectSort, insertSort } from './sort.js'
+			let arr = generateData(10000);
+			console.log(arr);
+// 			console.log(bubbleSort([...arr]));
+// 			console.log(selectSort([...arr]));
+			console.log(insertSort([...arr]));
+		</script>
+	</body>
+</html>
