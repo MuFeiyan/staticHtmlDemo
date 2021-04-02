@@ -6,12 +6,13 @@
 	</head>
 	<body>
 		<script type="module">
-			import { generateData, bubbleSort, selectSort, insertSort } from './sort.js'
-			let arr = generateData(10000);
+			import { generateData, bubbleSort, selectSort, insertSort, shellSort } from './sort.js'
+			let arr = generateData(1000);
 			console.log(arr);
-// 			console.log(bubbleSort([...arr]));
-// 			console.log(selectSort([...arr]));
+      console.log(bubbleSort([...arr]));
+      console.log(selectSort([...arr]));
 			console.log(insertSort([...arr]));
+			console.log(shellSort([...arr], [5, 2, 1]));
 		</script>
 	</body>
 </html>
