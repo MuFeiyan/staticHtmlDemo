@@ -69,7 +69,7 @@ export const insertSort = arr => {
 				arr[i] =  arr[i-1]; // 向后移一位
 		}
 		// 插入
-		arr[i] = num
+		arr[i] = num;
 	}
 	let sort = () => {
 		for(let i = 1; i < length; i++) {
@@ -77,9 +77,9 @@ export const insertSort = arr => {
 		}
 	}
 	takeTime(sort, "插入排序");
-	return arr
+	return arr;
 }
-// 希尔排序 数据量大占优势
+// 希尔排序 数据量大占优势 插入排序的优化版
 export const shellSort = (arr, gaps) => {
 	let sort = () => {
 		let length = arr.length;
@@ -87,14 +87,65 @@ export const shellSort = (arr, gaps) => {
 			let gap = gaps[g];
 			for(let i = gap; i < length ; i++) {
 				let tem = arr[i];
-				let j = i
+				let j = i;
 				for(;j >= gap && arr[j - gap] > tem; j = j - gap) {
-					arr[j] = arr[j - gap]
+					arr[j] = arr[j - gap];
 				}
-				arr[j] = tem
+				arr[j] = tem;
 			}
 		}
 	}
 	takeTime(sort, "希尔排序");
 	return arr;
+}
+// 归并排序
+export const mergeSort = arr => {
+	if(arr.length < 2) return arr;
+	let merge = (leftArr, rightArr) => {
+		let result = [];
+		while(leftArr.length > 0 && rightArr.length > 0) {
+			if (leftArr[0] > rightArr[0]) {
+				result.push(rightArr.shift());
+			} else {
+				result.push(leftArr.shift());
+			}
+		}
+		return result.concat(leftArr).concat(rightArr);
+	}
+	let data = [];
+	let sort = () => {
+		for(let i = 0; i < arr.length ; i++) {
+			data.push([arr[i]]);
+		}
+		while(data.length > 1) {
+			data.push(merge(data.shift(), data.shift()))
+		}
+		return data;
+	}
+	takeTime(sort, '归并排序');
+	return data[0];
+}
+// 快速排序 冒泡排序的优化版
+export const quickSort = arr => {
+	if(arr.length < 2) return arr;
+	let sort = (start, end) => {
+		let base = arr[start];
+		let middleIndex = start;
+		for(let i = start + 1; i <= end ; i++) {
+			if (arr[i] <= base) {
+				arr[middleIndex] = arr[i];
+				middleIndex ++;
+				arr[i] = arr[middleIndex];
+			}
+		}
+		arr[middleIndex] = base;
+		if (middleIndex - start > 1) {
+			sort(start, middleIndex - 1);
+		}
+		if (end - middleIndex > 1) {
+			sort(middleIndex + 1, end);
+		}
+	}
+	takeTime(() => sort(0, arr.length - 1), "快速排序");
+	return arr
 }

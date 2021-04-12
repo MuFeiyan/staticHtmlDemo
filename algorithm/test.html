@@ -6,13 +6,15 @@
 	</head>
 	<body>
 		<script type="module">
-			import { generateData, bubbleSort, selectSort, insertSort, shellSort } from './sort.js'
+			import { generateData, bubbleSort, selectSort, insertSort, shellSort, quickSort, mergeSort } from './sort.js'
 			let arr = generateData(1000);
 			console.log(arr);
       console.log(bubbleSort([...arr]));
       console.log(selectSort([...arr]));
 			console.log(insertSort([...arr]));
 			console.log(shellSort([...arr], [5, 2, 1]));
+      console.log(quickSort([...arr]));
+			console.log(mergeSort([...arr]));
 		</script>
 	</body>
 </html>
