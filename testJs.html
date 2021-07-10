@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+<!--		<script src="js/dataStructures.js"></script>
+		<script>
+var longestPalindrome = function(s) {
+    let arr1 = s.split('');
+    let max = 1;
+    let maxIndex = 0;
+    let type = 0;
+    for(let i = 0; i < arr1.length; i++) {
+        for(let j = 0; (i >= j) && i + j + 1 < arr1.length; j++) {
+            if (arr1[i + j + 1] === arr1[i - j]) {
+            	// abba
+                if (max < 2 * (j + 1)) {
+                    max = 2 * (j + 1);
+                    maxIndex = i - j;
+                    type = 1;
+                }
+            } else {
+                break;
+            }
+        }
+        for(let j = 1; j <= i && i + j < arr1.length; j++) {
+        	if (arr1[i + j] === arr1[i - j]) {
+            	// aba
+                if (max < (2 * j + 1)) {
+                    max = 2 * j + 1;
+                    maxIndex = i - j;
+                    type = 0;
+                }
+            } else {
+            	break;
+            }
+        }
+    }
+    console.log(max, maxIndex, type)
+    return type === 0 ? s.substr(maxIndex, max) : s.substr(maxIndex, max)
+};
+console.log(longestPalindrome('ccc'))
+console.log(longestPalindrome('cc'))
+console.log(longestPalindrome('ca'))
+console.log(longestPalindrome('abba'))
+console.log(longestPalindrome('abddsba'))
+console.log(longestPalindrome('cabba'))
+console.log(longestPalindrome('abbac'))
+
+		</script>-->
+	<script type="module">
+		import toEnglishNumber from './js/toEnglishNumber.js';
+		console.log(toEnglishNumber(0));
+		console.log(toEnglishNumber(5));
+		console.log(toEnglishNumber(10));
+		console.log(toEnglishNumber(12));
+		console.log(toEnglishNumber(30));
+		console.log(toEnglishNumber(100));
+		console.log(toEnglishNumber(101));
+		console.log(toEnglishNumber(120));
+		console.log(toEnglishNumber(1000));
+		console.log(toEnglishNumber(1001));
+		console.log(toEnglishNumber(1100));
+		console.log(toEnglishNumber(10100));
+		console.log(toEnglishNumber(123456789));
+		console.log(toEnglishNumber(12345678900000));
+	</script>
+	</body>
+</html>
