@@ -60,6 +60,7 @@ let unit = ['thousand', 'million', 'billion', 'trillion', 'quadrillion']
 		 console.error('请输入数字');
 		 return '';
 	 }
+	 if (number === 0) return 'zero';
 	 let result = '';
 	 let leftArr = number.toString().split('').reverse();
 	 for(let i = 0; i < unit.length; i++) {
@@ -86,13 +87,13 @@ let unit = ['thousand', 'million', 'billion', 'trillion', 'quadrillion']
 				}
 		 }
 		 if (arr.length == 1 && arr[0] != '0') {
-			 enNum += fixedNumber[arr[0]] + ' ';
+			 enNum += fixedNumber[arr[0]];
 		 }
-		 result = enNum + ' ' + result;
+		 result = enNum.trim() + ' ' + result.trim();
 		 if (leftArr.length == 0) {
-			  break;
+			break;
 		 } else {
-			 	result = unit[i] + ', ' + and +  result;
+			result = result.trim() ? unit[i] + ', ' + and  + ' ' + result : unit[i];
 		 }
 	 }
 	 result = result.trim().replaceAll('hundred ', 'hundred and ')
